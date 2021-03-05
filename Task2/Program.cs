@@ -17,7 +17,7 @@ namespace Task2
 
             //инициализируем словарь ключом будет слово, значением количество упоминаний
             Dictionary<string, int> wordDictionary = new Dictionary<string, int>();
-
+            //Заполняем словарь исключая пунктуацию
             foreach (var item in words)
             {
                 if (wordDictionary.ContainsKey(item))
@@ -33,11 +33,14 @@ namespace Task2
                        
                 }
             }
+            //упорядоченный по количеству упоминаний слов в тексте словарь. 
             var orderedDictionary = from record in wordDictionary
                         where record.Value > 1
                         orderby record.Value descending
                         select record;
-            int max = 15;
+            // количество слов для выборки
+            int max = 10;
+            //счетчик
             int cnt = 1;
 
             Console.WriteLine($"{max} слов наиболее часто встречающиеся в тексте: ");
